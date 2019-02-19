@@ -1,0 +1,120 @@
+html,
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h3 {
+  text-transform: capitalize;
+}
+
+.container {
+  display: flex;
+  max-width: 1200px;
+}
+
+.left-panel {
+  width: 500px;
+}
+
+.similar-cars > div {
+  display: inline-block;
+}
+
+.ratings {
+  display: flex;
+  align-items: center;
+}
+
+.rating-list {
+  width: 60%;
+}
+
+.rating-list > div {
+  background: grey;
+  width: 100%;
+  height: 25px;
+  border-radius: 10px;
+  margin: 5px 0;
+  overflow: hidden;
+}
+
+.rating-list > div::before {
+  content: 'asd';
+  background: black;
+  width: 20%;
+  height: 25px;
+  display: block;
+  border-radius: 10px;
+}
+
+.color-picker ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.color-picker ul li {
+  display: inline-block;
+}
+
+.color-name,
+.color-picker,
+.disclaimer {
+  text-align: center;
+}
+
+.indv-rating {
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.meter-wrapper {
+  height: 100%;
+  /* overflow: hidden; */
+}
+
+.meter {
+  width: 200px;
+  height: 200px;
+  border: 10px solid grey;
+  border-bottom: none;
+  border-radius: 50%;
+  box-sizing: border-box;
+  mask-clip: 1px 1px;
+  /* overflow: hidden; */
+}
+
+.meter > div {
+  width: 100%;
+  height: 100%;
+  background: cornsilk;
+}
+
+.indv-rating .meter-img {
+  position: absolute;
+  bottom: -12px;
+  left: 10px;
+  width: 100px;
+  transform-origin: 90px 12.5px;
+  height: 25px;
+  transform: rotate(2.356194490192345rad);
+  box-sizing: border-box;
+}
+
+.indv-rating .border {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  background: black;
+}
+
+#arc {
+  position: absolute;
+  transform: rotate(180deg);
+  z-index: -1;
+  height: 100px;
+}
