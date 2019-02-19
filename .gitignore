@@ -1,0 +1,4 @@
+dist/
+.cache/
+package.json
+*.zip

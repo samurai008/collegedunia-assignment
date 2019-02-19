@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+
 html,
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Lato', Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+div {
+  padding: 5px;
 }
 
 h3 {
@@ -11,10 +18,21 @@ h3 {
 .container {
   display: flex;
   max-width: 1200px;
+  margin: 0 auto;
 }
 
 .left-panel {
   width: 500px;
+  align-content: ceneter;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.right-panel > h3 {
+  padding: 0 5px;
 }
 
 .similar-cars > div {
@@ -24,28 +42,137 @@ h3 {
 .ratings {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0;
 }
 
 .rating-list {
   width: 60%;
 }
 
-.rating-list > div {
-  background: grey;
-  width: 100%;
-  height: 25px;
-  border-radius: 10px;
+div[id^="r-"] {
+  padding: 0;
   margin: 5px 0;
-  overflow: hidden;
 }
 
-.rating-list > div::before {
-  content: 'asd';
-  background: black;
-  width: 20%;
-  height: 25px;
+div[id^="r-"] > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
+  padding: 0;
+}
+
+h6, h5 {
+  margin: 0;
+}
+
+.number {
+  width: 10%;
+  padding: 0;
+  font-weight: bold;
+  text-align: right;
+}
+
+.bar {
+  background: rgba(255, 215, 0, 0.4);
+  width: 90%;
+  height: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.bar::before {
+  content: '';
+  background: rgba(255, 215, 0, 1);
+  height: 10px;
   display: block;
   border-radius: 10px;
+  animation-name: defaultloadbar;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes defaultloadbar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 50%;
+  }
+}
+
+#r-critics .bar::before {
+  animation-name: load87 !important;
+}
+
+@keyframes load87 {
+  from {
+    width: 0;
+  }
+  to {
+    width: 87%;
+  }
+}
+
+#r-performance .bar::before {
+  animation-name: load64 !important;
+}
+
+@keyframes load64 {
+  from {
+    width: 0;
+  }
+  to {
+    width: 64%;
+  }
+}
+
+#r-interior .bar::before {
+  animation-name: load90 !important;
+}
+
+@keyframes load90 {
+  from {
+    width: 0;
+  }
+  to {
+    width: 90%;
+  }
+}
+
+#r-safety .bar::before {
+  animation-name: load44 !important;
+}
+
+@keyframes load44 {
+  from {
+    width: 0;
+  }
+  to {
+    width: 44%;
+  }
+}
+
+#r-reliability .bar::before {
+  animation-name: load52 !important;
+}
+
+@keyframes load52 {
+  from {
+    width: 0;
+  }
+  to {
+    width: 52%;
+  }
+}
+
+.rating-list > a {
+  text-decoration: none;
+  float: right;
+  color: rgb(186, 85, 211);
+  font-weight: bold;
+  margin-top: 5px;
 }
 
 .color-picker ul {
@@ -58,39 +185,64 @@ h3 {
   display: inline-block;
 }
 
+.color-picker ul li button {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 5px solid white;
+  cursor: pointer;
+}
+
+.color-sample {
+  outline: none;
+  transition: border 0.4s;
+}
+
+.active-ring {
+  border: 5px solid rgba(255, 215, 0, 0.3) !important;
+}
+
+button[data-identifier='sample-blue'] {
+  background: blue;
+}
+
+button[data-identifier='sample-grey'] {
+  background: grey;
+}
+
+button[data-identifier='sample-red'] {
+  background: red;
+}
+
+button[data-identifier='sample-silver'] {
+  background: silver;
+}
+
 .color-name,
 .color-picker,
 .disclaimer {
   text-align: center;
 }
 
+.disclaimer {
+  color: rgb(139, 137, 137);
+}
+
+.color-name {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.indv-rating * {
+  padding: 0;
+}
+
 .indv-rating {
+  padding: 0;
   height: 100px;
   position: relative;
-  overflow: hidden;
 }
 
-.meter-wrapper {
-  height: 100%;
-  /* overflow: hidden; */
-}
-
-.meter {
-  width: 200px;
-  height: 200px;
-  border: 10px solid grey;
-  border-bottom: none;
-  border-radius: 50%;
-  box-sizing: border-box;
-  mask-clip: 1px 1px;
-  /* overflow: hidden; */
-}
-
-.meter > div {
-  width: 100%;
-  height: 100%;
-  background: cornsilk;
-}
 
 .indv-rating .meter-img {
   position: absolute;
@@ -99,8 +251,20 @@ h3 {
   width: 100px;
   transform-origin: 90px 12.5px;
   height: 25px;
-  transform: rotate(2.356194490192345rad);
+  transform: rotate(0rad);
   box-sizing: border-box;
+  animation-name: animateMeter;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes animateMeter {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(145deg);
+  }
 }
 
 .indv-rating .border {
@@ -112,9 +276,107 @@ h3 {
   background: black;
 }
 
-#arc {
-  position: absolute;
-  transform: rotate(180deg);
-  z-index: -1;
+.thumbnail {
+  width: 100px;
   height: 100px;
+}
+
+.score {
+  margin-top: 3px;
+  text-align: center;
+  font-size: 150%;
+  font-weight: bold;
+}
+
+.score + h4 {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.similar-cars {
+  margin-top: auto;
+}
+
+.similar-cars > div {
+  border-radius: 10px;
+  border: 1px solid rgba(139, 137, 137, 0.6);
+  margin: 0 3px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.overall-rating {
+  background: rgb(186, 85, 211);
+  color: white;
+  font-weight: bold;
+  font-size: 150%;
+  text-align: center;
+}
+
+.similar-cars .title {
+  text-align: center;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.thumbnail > img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.circle-container {
+  padding: 0;
+  width: 200px;
+  height: 100px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.circle-wrapper {
+  padding: 0;
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.circle-border {
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+  top: 0;
+  box-sizing: border-box;
+  border: 10px solid rgb(255, 215, 0);
+  border-bottom: none;
+}
+
+.semi-circle {
+  padding: 0;
+  width: 200px;
+  height: 100px;
+  background: rgba(255, 215, 0, 0.4);
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+  transform-origin: bottom center;
+  transform: rotate(180deg);
+  animation: degrees 1.2s forwards;
+}
+
+@keyframes degrees {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(325deg);
+  }
+}
+
+.spotlight-img {
+  width: 500px;
+  height: 350px;
 }
